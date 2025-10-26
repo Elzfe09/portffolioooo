@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elizabeth Feodora | Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #cbb2ff, #e6d0ff, #d8b7ff);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        z-index:0;
+        animation: floatShape 20s infinite ease-in-out alternate;
+    }
+
+    .shape:nth-child(1) {
+        width: 300px; height: 300px;
+        background: #d69dfc;
+        top: 10%;left: -10%;
+        animation-delay: 0s;
+
+    }
+    .shape:nth-child(2) {
+        width: 250px; height: 250px;
+        background: #a587ff;
+        top: 60%;left: -10%;
+        animation-delay: 2s;
+
+    }
+    .shape:nth-child(3) {
+        width: 200px; height: 200px;
+        background: #ffccf2;
+        bottom:0 ;left:30%;
+        animation-delay: 4s;
+
+    }
+    @keyframes floatShape {
+        0% {transform: translateY(0px) scale(1);}
+        100% {transform: translateY(-60px) scale (1.1);}
+    }
+
+    .background-bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+    }
+    .background-bubbles span {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        animation: rise 20s linear infinite;
+        bottom: -150px;
+    }
+    .background-bubbles span:nth-child(odd) {
+        background: rgba(255,230,0,0.3);
+    }
+    @keyframes rise {
+        0% {transform: translateY(0) scale(1); opacity: 0.8;}
+        100% {transform: translateY(-1200px) scale (1.5); opacity: 0;}
+    }
+    .background-bubbles span:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .background-bubbles span:nth-child(2) { left: 25%; animation-delay: 4s; }
+    .background-bubbles span:nth-child(3) { left: 40%; animation-delay: 2s; }
+    .background-bubbles span:nth-child(4) { left: 55%; animation-delay: 6s; }
+    .background-bubbles span:nth-child(5) { left: 70%; animation-delay: 1s; }
+    .background-bubbles span:nth-child(6) { left: 85%; animation-delay: 3s; }
+
+    /* ===== Navbar ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      background: rgba(10, 10, 25, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    nav a {
+        position: relative;
+        overflow: hidden;
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.6s ease, opacity 0.8s;
+        opacity: 0;
+    }
+
+    nav a:active::after {
+        transform: scale(20);
+        opacity:1;
+        top: 50%;
+        left: 50%
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .nav-links a:hover {
+        color: #ffe600;
+        transform: scale (1.08);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 3px;
+      background: #04d9ff;
+      transition: width 0.3s;
+      border-radius: 2px;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      color: #f1f1f1;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background: #ffe600;
+      color: #000;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #fff44f;
+      transform: translateY(-3px);
+    }
+
+    /* ===== About Section ===== */
+    #about {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 100px 50px;
+      text-align: center;
+    }
+
+    .about-photo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .about-photo img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      animation: bounce 3s infinite ease-in-out;
+      border: 4px solid #fff;
+      box-shadow: 0 0 25px rgba(255, 230, 0, 0.4);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .about-text {
+      flex: 2;
+      max-width: 600px;
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      color: #f1f1f1;
+      margin-bottom: 2rem;
+    }
+
+    /* ===== Bubble Skills ===== */
+    .skills-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 2rem;
+    }
+
+    .bubble {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      padding: 20px;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      animation: fall 1.5s ease-in-out forwards;
+      animation-delay: calc(var(--i) * 0.3s);
+      transition: 0.4s;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .bubble:hover {
+      background: rgba(255, 230, 0, 0.8);
+      color: #000;
+      box-shadow: 0 0 20px rgba(255, 230, 0, 0.8);
+      transform: scale(1.15);
+    }
+
+    @keyframes fall {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Projects Section ===== */
+    #projects {
+      padding: 100px 50px;
+      text-align: center;
+    }
+
+    #projects h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-slider {
+      display: flex;
+      gap: 25px;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scroll-behavior: smooth;
+    }
+
+    .project-card {
+      flex: 0 0 300px;
+      background: rgba(30, 20, 60, 0.8);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, filter 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      filter: brightness(0.8);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 15px;
+    }
+
+    .project-info h3 {
+      margin-bottom: 8px;
+      color: #ffe600;
+    }
+
+    .project-info p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .project-slider::-webkit-scrollbar { display: none; }
+
+    /* ===== Contact Section ===== */
+    #contact {
+      padding: 100px 50px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    #contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    #contact p {
+      color: #f0f0f0;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #ffe600;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #ffe600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #ddd;
+      background: #0a0a15;
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: all 0.8s ease;
+    }
+    .reveal.active {
+        opacity:1;
+        transform: translateY(0);
+    }
+    .skills-wrapper {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        background: rgba(255,255,255,0.7);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .skills-slider {
+        display: flex;
+        transition: transform 0.6s ease-in-out;
+        width: 200%;
+    }
+    .skill-level {
+        flex: 1 0 100%;
+        text-align: center;
+    }
+    .skill-level h3 {
+        color: #5a3ca7;
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .skill-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+    .skill {
+        width: 120px;
+        height: 130px;
+        border-radius: 16px;
+        background: #fff8fb;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+
+    .skill:hover {
+        transform: scale(1.08);
+        background: #f8ecff;
+        box-shadow: 0 8px 18px rgba(170,140,255,0.4);
+    }
+    .skill img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    .slider-buttons {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        pointer-events: none;
+        padding: 0 15px;
+    }
+    .slide-btn {
+        pointer-events: all;
+        background: #c0a3ff;
+        border: none;
+        color: white;
+        font-size: 24px;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+    }
+    .slide-btn:hover {
+        background: #9b7fff;
+        transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+    <div class = 'shape'></div>
+    <div class = 'shape'></div>
+    <div class = 'shape'></div>
+
+    <div class = 'background-bubbles'>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+  <nav>
+    <div class="logo">Elizabeth Feodora</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <h1>I'm Elizabeth Feodora aspiring Data Science / Data Analyst Entry Level</h1>
+    <p>Machine Learning • Business Analyst• Automation</p>
+    <a href="#projects" class="btn">View My Projects</a>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class = 'reveal'>
+    <div class="about-photo">
+      <img src="picture.jpg" alt="Elizabeth Feodora">
+    </div>
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Hello! I'm Elizabeth, a passionate Data Analyst and Machine Learning enthusiast focused on building intelligent systems that empower businesses and make data-driven decisions.</p>
+
+<div class="skills-wrapper">
+  <div class="skills-slider">
+
+    <!-- Beginner Section -->
+    <div class="skill-level" id="beginner">
+      <h3>Beginner</h3>
+      <div class="skill-container">
+        <div class="skill">
+          <img src="yolo.jpg" alt="YOLO" />
+          <p>YOLO</p>
+        </div>
+        <div class="skill">
+          <img src="tf.png" alt="Tensorflow/Keras" />
+          <p>Tensorflow/Keras</p>
+        </div>
+        <div class="skill">
+          <img src="reinforcement-learning.png" alt="Reinforced" />
+          <p>Reinforced Learning</p>
+        </div>
+        <div class="skill">
+          <img src="langchain.png" alt="Langchain" />
+          <p>Langchain/Langgraph</p>
+        </div>
+        <div class="skill">
+          <img src="pyt.png" alt="PyTorch" />
+          <p>PyTorch</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Intermediate Section -->
+    <div class="skill-level" id="intermediate">
+      <h3>Intermediate</h3>
+      <div class="skill-container">
+        <div class="skill">
+          <img src="arima.png" alt="ARIMA" />
+          <p>ARIMA</p>
+        </div>
+        <div class="skill">
+          <img src="apriori.png" alt="Apriori" />
+          <p>Apriori</p>
+        </div>
+        <div class="skill">
+          <img src="nlp.png" alt="NLP" />
+          <p>NLP</p>
+        </div>
+        <div class="skill">
+          <img src="rag.png" alt="RAG" />
+          <p>RAG</p>
+        </div>
+        <div class="skill">
+          <img src="matplotlib.png" alt="Matplotlib" />
+          <p>Matplotlib</p>
+        </div>
+        <div class="skill">
+          <img src="tableau.png" alt="Tableau" />
+          <p>Tableau</p>
+        </div>
+        <div class="skill">
+          <img src="eda.jpg" alt="EDA" />
+          <p>EDA</p>
+        </div>
+        <div class="skill">
+          <img src="scikitlearn.png" alt="scikitlearn" />
+          <p>Scikit-learn</p>
+        </div>
+        <div class="skill">
+          <img src="pandas.png" alt="Pandas" />
+          <p>Pandas</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slider-buttons">
+    <button class="slide-btn" id="prevBtn">←</button>
+    <button class="slide-btn" id="nextBtn">→</button>
+  </div>
+</div>
+   
+  </section>
+
+  <!-- ===== PROJECT SECTION ===== -->
+  <section id="projects" class = 'reveal'>
+    <h2>Projects</h2>
+
+    <div class="project-slider">
+      <div class="project-card" onclick="window.open('https://github.com/Elzfe09/AgenticAI-Chatbot')">
+        <img src="agentic-ai.png" alt="Agentic AI">
+        <div class="project-info">
+          <h3>Agentic AI</h3>
+          <p>Automated workflow using LLM agents and LangChain.</p>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="window.open('https://github.com/Elzfe09/SentimentAnalysis-DL')">
+        <img src="sentimentanalysis.jpg" alt="Sentiment Analysis">
+        <div class="project-info">
+          <h3>Sentiment Analysis</h3>
+          <p>Analyzing emotions in customer reviews using NLP.</p>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="window.open('https://github.com/Elzfe09/Time--Series-Project')">
+        <img src="timeseries.png" alt="Forecasting">
+        <div class="project-info">
+          <h3>Time Series Forecasting</h3>
+          <p>Predicting trends in air passenger data with ARIMA.</p>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="window.open('https://github.com/Elzfe09/Apriori-Machine-Learning')">
+        <img src="apriori.jpg" alt="Apriori">
+        <div class="project-info">
+          <h3>Apriori Market Basket Analysis</h3>
+          <p>predicting next item purchase and combination of goods using apriori</p>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="window.open('https://github.com/Elzfe09/Netflix-EDA')">
+        <img src="eda.jpg" alt="EDA">
+        <div class="project-info">
+          <h3>EDA</h3>
+          <p>Exploratory Data Analysis.</p>
+         </div>
+      </div>
+
+        <div class="project-card" onclick="window.open('https://github.com/Elzfe09/RAG-ChatBot')">
+          <img src="chatbot.jpg" alt="Chatbot">
+          <div class="project-info">
+            <h3>Interactive Customer Services Chatbot</h3>
+            <p>chatbottttt</p>
+          </div>
+       </div>
+
+       <div class="project-card" onclick="window.open('https://github.com/Elzfe09/RFM-Analysis')">
+          <img src="rfm.jpg" alt="RFM">
+          <div class="project-info">
+            <h3>RFM analysis and clustering customer transaction behaviour</h3>
+            <p>RFMM</p>
+          </div>
+       </div>
+
+       <div class="project-card" onclick="window.open('https://github.com/USERNAME/forecast', '_blank')">
+          <img src="flappy.jpg" alt="RFM">
+          <div class="project-info">
+            <h3>Flappy Bird Reinforced Learning</h3>
+            <p>flappyyyy</p>
+          </div>
+       </div>
+
+       <div class="project-card" onclick="window.open('https://github.com/Elzfe09/ObjectDetection-YOLO8v')">
+          <img src="yolo.jpg" alt="RFM">
+          <div class="project-info">
+            <h3>Object Detection YOLO</h3>
+            <p>flappyyyy</p>
+          </div>
+       </div>
+
+       <div class="project-card" onclick="window.open('https://github.com/Elzfe09/DiscountAnalysis-LinearRegression')">
+          <img src="disc.jpg" alt="RFM">
+          <div class="project-info">
+            <h3>Discount Analysis-Linear Regression</h3>
+            <p>flappyyyy</p>
+          </div>
+       </div>
+
+    
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Interested in collaboration or have a project idea? Let’s connect!</p>
+    <div class="contact-links">
+      <a href="mailto:elizabethfeodora@gmail.com">📧 Email</a>
+      <a href="https://www.bing.com/ck/a?!&&p=2141d44839ff3f2f36bf7b7f8ed277cfc8bb4cf07a92b7f102e685622d7aa234JmltdHM9MTc2MDkxODQwMA&ptn=3&ver=2&hsh=4&fclid=123fa14d-d0b5-6fd0-0bad-b3e0d1e36e15&psq=elizabeth+feodora+linkedin&u=a1aHR0cHM6Ly9zZy5saW5rZWRpbi5jb20vaW4vZWxpemFiZXRoLWZlb2RvcmEtODA4MGE1MjIz">🔗 LinkedIn</a>
+      <a href="https://github.com/Elzfe09">💻 GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Elizabeth Feodora. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    window.addEventListener('scroll', () => {
+        for (let i = 0; i < reveals.length; i++){
+            const windowHeight = window.innerHeight;
+            const elementTop = reveals[i].getBoundingClientRect().top;
+            const elementVisible = 100;
+
+            if (elementTop < windowHeight - elementVisible){
+                reveals[i].classList.add('active');
+            } else {
+                reveals[i].classList.remove('active');
+            }
+        }
+    })
+
+    const slider = document.querySelector(".skills-slider");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    let slideIndex = 0;
+
+    nextBtn.addEventListener("click", () => {
+      slideIndex = (slideIndex + 1) % 2;
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    });
+
+    prevBtn.addEventListener("click", () => {
+      slideIndex = (slideIndex - 1 + 2) % 2;
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    });
+
+
+  </script>
+
+</body>
+</html>
